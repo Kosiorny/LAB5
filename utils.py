@@ -21,3 +21,11 @@ def multiply(a: int, b: int) -> int:
 def divide(a: int, b: int) -> float:
     """Divide the first integer by the second and return the result as a float."""
     return a / b
+
+def to_binary(n: int) -> str:
+    """Convert a natural number (0–100) to binary string. Raise if invalid."""
+    if not isinstance(n, int):
+        raise TypeError("Input must be an integer.")
+    if not 0 <= n <= 100:
+        raise ValueError("Input must be in range 0 to 100.")
+    return bin(n)

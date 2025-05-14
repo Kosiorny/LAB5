@@ -30,3 +30,24 @@ def test_multiply(a, b, expected):
 def test_divide(a, b, expected):
     result = utils.divide(a, b)
     assert result == expected
+
+@pytest.mark.parametrize("n, expected", [
+    (0, "0b0"),
+    (1, "0b1"),
+    (2, "0b10"),
+    (10, "0b1010"),
+    (100, "0b1100100")
+])
+def test_to_binary_valid(n, expected):
+    assert utils.to_binary(n) == expected
+
+@pytest.mark.parametrize("n", [-1, 101, 999])
+def test_to_binary_out_of_range(n):
+    with pytest.raises(ValueError):
+        utils.to_binary(n)
+
+@pytest.mark.parametrize("n", [1.5, "10", None])
+def test_to_binary_not_natural(n):
+    with pytest.raises(TypeError):
+        utils.to_binary(n)
+
